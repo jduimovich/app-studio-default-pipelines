@@ -1,0 +1,9 @@
+
+
+docker login docker.io 
+docker build -t jduimovich/as-build-tools .
+docker push jduimovich/as-build-tools 
+docker login quay.io
+docker tag jduimovich/as-build-tools quay.io/jduimovich0/as-build-tools
+docker push quay.io/jduimovich0/as-build-tools
+ 

@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: as-show-workspace 
+spec:
+  steps:
+    - name: show-workspace-wontents
+      image: quay.io/jduimovich0/as-build-tools
+      script: |
+        #!/usr/bin/env bash
+        echo "Show workspace contents: $(pwd)" 
+        du  -a   
+  workspaces:
+  - name: source
+    description: source-dir 

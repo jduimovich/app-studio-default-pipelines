@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pipelines-by-gitops
+spec:
+  destination:
+    name: ''
+    namespace: pipelines-by-gitops
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: pipelines
+    repoURL: 'https://github.com/jduimovich/app-studio-default-pipelines.git'
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+

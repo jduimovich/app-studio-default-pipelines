@@ -1,0 +1,15 @@
+kind: Suite
+apiVersion: test.gatekeeper.sh/v1alpha1
+tests:
+- name: allowed-repos
+  template: template.yaml
+  constraint: repo-must-be-quay.io/constraint.yaml
+  cases:
+  - name: example-allowed
+    object: repo-must-be-quay.io/example_allowed.yaml
+    assertions:
+    - violations: no
+  - name: example-disallowed
+    object: repo-must-be-quay.io/example_disallowed.yaml
+    assertions:
+    - violations: yes

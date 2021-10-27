@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata: 
+  generateName: as-default-pipeline- 
+spec:
+  params:
+    - name: git-url
+      value: 'https://github.com/jduimovich/a-simple-app'
+    - name: output-image
+      value: image-registry.openshift-image-registry.svc:5000/pipelines-by-gitops/a-simple-app
+  pipelineRef:
+    name: as-default-pipeline
+  workspaces:
+    - name: workspace
+      persistentVolumeClaim:
+        claimName: as-default-workspace 
+ 

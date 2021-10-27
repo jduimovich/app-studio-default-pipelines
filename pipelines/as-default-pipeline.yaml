@@ -1,0 +1,60 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: as-default-pipeline 
+spec:
+  params:
+    - description: source-code-git-repo-url
+      name: git-url
+      type: string
+    - description: 'output image '
+      name: output-image
+      type: string
+  tasks:
+    - name: as-git-task
+      params:
+        - name: git-url
+          value: $(params.git-url)
+      taskRef:
+        kind: Task
+        name: as-git-task
+      workspaces:
+        - name: source
+          workspace: workspace
+    - name: as-show-workspace
+      runAfter:
+        - as-git-task
+      taskRef:
+        kind: Task
+        name: as-show-workspace
+      workspaces:
+        - name: source
+          workspace: workspace
+    - name: buildah
+      params:
+        - name: IMAGE
+          value: >-
+            $(params.output-image)
+        - name: BUILDER_IMAGE
+          value: >-
+            registry.redhat.io/rhel8/buildah@sha256:99cae35f40c7ec050fed3765b2b27e0b8bbea2aa2da7c16408e2ca13c60ff8ee
+        - name: STORAGE_DRIVER
+          value: vfs
+        - name: DOCKERFILE
+          value: ./Dockerfile
+        - name: CONTEXT
+          value: /workspace/source
+        - name: TLSVERIFY
+          value: 'true'
+        - name: FORMAT
+          value: oci
+      runAfter:
+        - as-show-workspace
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: workspace
+  workspaces:
+    - name: workspace
