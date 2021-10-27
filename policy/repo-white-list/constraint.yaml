@@ -8,7 +8,9 @@ spec:
       - apiGroups: [""]
         kinds: ["Pod"]
     namespaces:
-      - "default"
+      - "as-build-protected"
   parameters:
     repos:
       - "quay.io/"
+      - "registry.redhat.io/" 
+      - "registry.access.redhat.com/"

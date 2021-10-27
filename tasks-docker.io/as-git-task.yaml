@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: as-git-task 
+spec:
+  params: 
+    - name: git-url
+      type: string
+  steps:
+    - name: reset-working-dir  
+      image: docker.io/jduimovich/as-build-tools
+      script: |
+        #!/usr/bin/env bash
+        echo reset-working-dir 
+        cd source      
+        rm -rf ./*
+        rm -rf ./.*    
+        echo end-reset-working-dir 
+    - name: git-clone
+      env:
+        - name: GIT_URL
+          value: $(params.git-url) 
+      image: docker.io/jduimovich/as-build-tools
+      script: |  
+        git clone "${GIT_URL}" source
+    - name: show-checked-out-files  
+      image: docker.io/jduimovich/as-build-tools
+      command:
+        - du
+      args: ["-a"]  
+  workspaces:
+  - name: source
+    description: source-dir 
