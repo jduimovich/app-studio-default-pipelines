@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: pipelines-by-gitops
+  namespace: openshift-gitops
 spec:
   destination:
     name: ''
@@ -9,13 +10,10 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: pipelines
-    repoURL: 'https://github.com/jduimovich/app-studio-default-pipelines.git'
+    repoURL: 'https://github.com/jduimovich/pipelines-as-gitops.git'
     targetRevision: HEAD
-    directory:
-      recurse: true
   project: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-
