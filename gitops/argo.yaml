@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: pipelines-by-gitops
+  name: as-build-gitops
   namespace: openshift-gitops
 spec:
   destination:
     name: ''
-    namespace: pipelines-by-gitops
+    namespace: as-build-gitops
     server: 'https://kubernetes.default.svc'
   source:
     path: pipelines

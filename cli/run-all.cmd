@@ -1,6 +1,6 @@
 
 oc project as-build
-oc create -f %CD%\runners
+call %CD%\cli\run.cmd 
 
 oc project as-build-protected
-oc create -f %CD%\runners
+call %CD%\cli\run.cmd  

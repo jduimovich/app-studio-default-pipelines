@@ -7,7 +7,7 @@ spec:
     - name: git-url
       value: 'https://github.com/jduimovich/a-simple-app'
     - name: output-image
-      value: image-registry.openshift-image-registry.svc:5000/pipelines-by-gitops/a-simple-app
+      value: TO_BE_REPLACED
   pipelineRef:
     name: as-default-pipeline
   workspaces:
