@@ -13,4 +13,3 @@ echo Namespace: %NS%
 
 yq -M e ".spec.params[1].value = \"%IMG%\"" %CD%\runners\run-basic-clone-push.yaml | oc create -f -
 
-%
