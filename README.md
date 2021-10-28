@@ -5,7 +5,7 @@ This repository contains some sample pipelines for a default container build and
 The repository demonstrates three options
 
 1. Using gitops to install pipelines in a namespace.
-2. Manually installing piplines using oc apply
+2. Manually installing pipelines using oc apply
 3. Manually configuring a pipeline environment to support policy and restrictions 
 
 To run these examples, you need to install Openshift Pipelines, Openshift Gitops and Gatekeeper Operator from the console. 
