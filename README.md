@@ -10,7 +10,7 @@ The repository demonstrates three options
 
 To run these examples, you need to install Openshift Pipelines, Openshift Gitops and Gatekeeper Operator from the console. 
 
-# Running the Gitops Example 
+## Running the Gitops Example 
 To link this repository simply run 
 ```
 oc apply -f gitops
@@ -19,7 +19,7 @@ oc apply -f gitops
 This will set up an application whic will sync the `pipelines` directory in this repo to the cluster.
 To add new tasks or pipelines or policy, add the manifests to the pipelines directory.
 
-# Running the Unrestricted Build 
+## Running the Unrestricted Build 
 
 Create namespaces and install pipelines. 
 ```
@@ -31,7 +31,7 @@ To run a build in this namespace
 ``` 
 oc create -f runners -n as-build
 ```
-# Running the  Build with Policy Installed
+## Running the  Build with Policy Installed
 
 Create namespaces and install pipelines and policy 
 ```
