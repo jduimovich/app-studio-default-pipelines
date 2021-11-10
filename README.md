@@ -43,11 +43,13 @@ Run the build using the above scripts.
 
 ## Running the  Build with Policy Installed
 
-Create namespaces and install pipelines and policy 
+Create namespaces and install pipelines and policy.   
 ```
 oc new-project as-build-protected
-oc apply -f pipelines
-oc apply -f policy\repo-white-list   
+oc apply -f pipelines  
+oc apply -f policy/repo-white-list/template.yaml
+oc apply -f policy/repo-white-list/constraint.yaml
+
 ```  
 
 To demonstrate policy enforcement install a task which has a reference to a non-approved location.
