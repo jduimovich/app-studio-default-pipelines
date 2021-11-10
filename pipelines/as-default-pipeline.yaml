@@ -15,8 +15,6 @@ spec:
       params:
         - name: url
           value: $(params.git-url)
-        - name: subdirectory
-          value: source 
       taskRef:
         kind: ClusterTask
         name: git-clone
