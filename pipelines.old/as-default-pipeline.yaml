@@ -4,28 +4,26 @@ metadata:
   name: as-default-pipeline 
 spec:
   params:
-    - description: 'Source Repository URL'
+    - description: source-code-git-repo-url
       name: git-url
       type: string
-    - description: 'Fully Qualified Output Image'
+    - description: 'output image '
       name: output-image
       type: string
   tasks:
-    - name: clone-using-cluster-task
+    - name: as-git-task
       params:
-        - name: url
+        - name: git-url
           value: $(params.git-url)
-        - name: subdirectory
-          value: source 
       taskRef:
-        kind: ClusterTask
-        name: git-clone
+        kind: Task
+        name: as-git-task
       workspaces:
-        - name: output
+        - name: source
           workspace: workspace
     - name: as-show-workspace
       runAfter:
-        - clone-using-cluster-task
+        - as-git-task
       taskRef:
         kind: Task
         name: as-show-workspace
