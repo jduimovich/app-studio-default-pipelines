@@ -6,6 +6,6 @@ echo "Image: " $IMG
 export REP='"'$IMG'"'
 echo $REP
 
-yq -M e ".spec.params[1].value = \"$IMG\"" runners/run-basic-clone-push.yaml
-yq -M e ".spec.params[1].value = \"$IMG\"" runners/run-basic-clone-push.yaml | oc create -f -
+yq -M e ".spec.params[1].value=\"$IMG\"" runners/run-basic-clone-push.yaml
+yq -M e ".spec.params[1].value=\"$IMG\"" runners/run-basic-clone-push.yaml | oc create -f -
 
