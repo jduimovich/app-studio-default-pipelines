@@ -9,7 +9,18 @@ spec:
       type: string
     - description: 'Fully Qualified Output Image'
       name: output-image
+      type: string 
+    - description: 'P1'
+      name: p1
       type: string
+      default: "p1"
+    - description: 'P2'
+      name: p2
+      type: string
+      default: "p2"
+    - description: 'P3 - no defaults'
+      name: p3
+      type: string 
   tasks:
     - name: clone-using-cluster-task
       params:
